@@ -1,0 +1,4 @@
+make dir
+create a php file
+in cmd :php -S localhost:8000
+go to : http://localhost:8000/index.php
