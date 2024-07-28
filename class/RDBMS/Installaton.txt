@@ -1,0 +1,204 @@
+This details the main steps in the installation of Apache webserver on your Ubuntu machine. The guidelines are taken from the website Installing apache webserver on ubuntu. You can also visit the site.
+
+Pre-requisite: You should have an Ubuntu machine and sudo privileges on your machine.
+
+Step 1. Installing Apache. We will use the apt package management tool. Use the following commands.
+
+$ sudo apt update
+
+$ sudo apt install apache2
+
+At this point apt would have installed Apache and the required dependency packages.
+
+Step 2. Enabling Apache app profile for firewall using ufw. Run the following command.
+
+$sudo ufw app list
+
+You should get a terminal output of the application profiles:
+
+Available applications:
+
+  Apache
+
+  Apache Full
+
+  Apache Secure
+
+  CUPS
+
+  Postfix
+
+  Postfix SMTPS
+
+  Postfix Submission
+
+Allow Apache using the following command.
+
+$ sudo ufw allow 'Apache'
+
+STEP 3.  Check Apache status
+
+Use systemctl command to check the status of Apache
+
+$ sudo systemctl status apache2
+
+Output should be similar to the following.
+
+apache2.service - The Apache HTTP Server
+
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+
+     Active: active (running) since Sat 2024-07-27 12:44:08 IST; 21h ago
+
+       Docs: https://httpd.apache.org/docs/2.4/
+
+    Process: 609 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+
+    Process: 829357 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)
+
+   Main PID: 692 (apache2)
+
+      Tasks: 7 (limit: 18171)
+
+     Memory: 30.3M
+
+        CPU: 6.333s
+
+     CGroup: /system.slice/apache2.service
+
+             ├─    692 /usr/sbin/apache2 -k start
+
+             ├─ 829371 /usr/sbin/apache2 -k start
+
+             ├─ 829373 /usr/sbin/apache2 -k start
+
+             ├─ 829374 /usr/sbin/apache2 -k start
+
+             ├─ 829376 /usr/sbin/apache2 -k start
+
+
+             ├─ 829378 /usr/sbin/apache2 -k start
+
+STEP 4. Check Apache default landing page as follows. If you know your  IP address, enter the following into your browser tab's address bar:
+
+http://your-IP-address 
+
+If you do not know your IP address, use the following command:
+
+$ hostname -I
+
+You should see the default Ubuntu Apache web page.
+
+STEP 5. There are a series of systemctl parameter commands to start, stop, restart, enable/disable Apache (at boot time). At this time you may not need it. These commands are
+
+Start Apache service.
+
+$sudo systemctl start apache2
+
+Stop  and restart Apache
+
+$ sudo systemctl restart apache2
+
+Reload ( without dropping connections) 
+
+$ sudo systemctl reload apache2
+
+Apache is configured to start automatically during booting. To disable this:
+
+$ sudo systemctl disable apache2
+
+To re-enable apache start up at boot time
+
+$sudo systemctl enable apache2
+
+
+
+STEP 6. This is to create a 'virtual host' and will allow you to set up your own your_domain.  (Replace it with your own name or login id or choice of your domain name  etc.)
+
+On Ubuntu, Apache serves documents from the /var/www/html directory. To create your_domain, create a directory for your_domain.
+
+$ sudo mkdir /var/www/your_domain
+
+Next, make yourself the owner of this directory using the $USER environment variable.
+
+$ sudo chown -R $USER:$USER /var/www/your_domain
+
+Give appropriate rwx privileges to yourself and rx privileges to your group.
+
+$ sudo chmod -R 755 /var/www/your_domain
+
+Next create a sample index.html page and place it in the directory as /var/www/your_domain/index.html
+
+A sample index.html is the following (you can write something else also).
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head> <title> Welcome to Your_domain </title> </head>
+
+<body> <h1> Success! The your_domain virtual host is working! </h1>
+
+</body>
+
+</html>
+
+Use any editor to create the index.html file. Save it in the /var/www/your_domain/   directory as index.html.
+
+STEP 7. You have to create a new configuration file your_domain.conf in the directory /etc/apache2/sites-available.
+
+Go to the directory /etc/apache2/sites-available. 
+
+You will see a few .conf files:
+
+000-default.conf  default-ssl.conf  sumit.conf
+
+(the first two is standard, the last one is your_domain.conf file).
+
+Use an editor and create the following your_domain  file in that directory--copy the following lines into this file /etc/apache2/sites-available/your_domain.conf  
+
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@localhost
+
+    ServerName your_domain
+
+    ServerAlias www.your_domain
+
+    DocumentRoot /var/www/your_domain
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+
+</VirtualHost>
+
+Save this file
+
+Enable the file with a2ensite tool:
+
+$ sudo a2ensite your_domain.conf
+
+Test for configuration errors:
+
+$ sudo apache2ctl configtest
+
+Output may look something like this
+
+
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+
+Syntax OK
+
+Restart Apache
+
+$ sudo systemctl restart apache2
+
+Apache should now be serving your domain name. You can test this 
+
+by entering http://your_domain in your browser's address entry area. You should see something like this 
+
+Success! The your_domain virtual host is working!
+
+Repeat: your_domain is your loigin id or yoru first name/last name combination etc. 
