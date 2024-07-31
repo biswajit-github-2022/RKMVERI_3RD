@@ -1,0 +1,4 @@
+CREATE USER 'biswajit'@'localhost' IDENTIFIED BY 'biswajit_mysql';
+GRANT ALL PRIVILEGES ON *.* TO 'biswajit'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
