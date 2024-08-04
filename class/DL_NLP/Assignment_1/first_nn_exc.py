@@ -84,11 +84,12 @@ class FirstNN(object):
     # Store the result in the scores variable, which should be an array of      #
     # shape (N, C).                                                             #
     #############################################################################
-    z1=np.dot(X,W1) + b1
-    o1=sigmoid_func(z1)
-    z2=np.dot(o1,W2) + b2
-    scores=z2
-    
+
+    z1 = X.dot(W1) + b1
+    a1 = sigmoid_func(z1)
+    z2 = a1.dot(W2) + b2
+    scores = z2
+
     #############################################################################
     #                              END OF YOUR CODE                             #
     #############################################################################
@@ -105,12 +106,12 @@ class FirstNN(object):
     # in the variable loss, which should be a scalar. Use the Softmax           #
     # classifier loss.                                                          #
     #############################################################################
-    o2=np.exp(z2)/np.sum(np.exp(z2),axis=1,keepdims=True)
-    # print(o2.shape)
-    for k in range(N):
-      for j in range(o2.shape[1]):
-        
-
+    exp_scores = np.exp(scores - np.max(scores, axis=1, keepdims=True))
+    probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+    correct_logprobs = -np.log(probs[range(N), Y])
+    data_loss = np.sum(correct_logprobs) / N
+    reg_loss = 0.5 * reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+    loss = data_loss + reg_loss
     #############################################################################
     #                              END OF YOUR CODE                             #
     #############################################################################
@@ -122,8 +123,18 @@ class FirstNN(object):
     # and biases. Store the results in the grads dictionary. For example,       #
     # grads['W1'] should store the gradient on W1, and be a matrix of same size #
     #############################################################################
-    
-        
+    dscores = probs
+    dscores[range(N), Y] -= 1
+    dscores /= N
+
+    grads['W2'] = a1.T.dot(dscores) + reg * W2
+    grads['b2'] = np.sum(dscores, axis=0)
+
+    da1 = dscores.dot(W2.T)
+    dz1 = da1 * a1 * (1 - a1)
+
+    grads['W1'] = X.T.dot(dz1) + reg * W1
+    grads['b1'] = np.sum(dz1, axis=0)
     #############################################################################
     #                              END OF YOUR CODE                             #
     #############################################################################
@@ -174,9 +185,11 @@ class FirstNN(object):
       # TODO: Create a random minibatch of training data and labels, storing  #
       # them in X_batch and y_batch respectively.                             #
       #########################################################################
+
       mask = np.random.choice(num_train_data, batch_size)
       X_batch = X[mask]
       Y_batch = Y[mask]  
+
       #########################################################################
       #                             END OF YOUR CODE                          #
       #########################################################################
@@ -191,16 +204,18 @@ class FirstNN(object):
       # using stochastic gradient descent. You'll need to use the gradients   #
       # stored in the grads dictionary defined above.                         #
       #########################################################################
+
+      self.params['W1'] -= learning_rate * grads['W1']
+      self.params['b1'] -= learning_rate * grads['b1']
+      self.params['W2'] -= learning_rate * grads['W2']
+      self.params['b2'] -= learning_rate * grads['b2']
       
-        
-        
       #########################################################################
       #                             END OF YOUR CODE                          #
       #########################################################################
 
       if verbose and it % 100 == 0:
-#         print('iteration %d / %d: loss %f' % (it, num_iters, loss))
-        print('iteration {} / {}: loss {}' .format(it, num_iters, loss))
+        print('iteration {} / {}: loss {}'.format(it, num_iters, loss))
 
       # Every epoch, check train and val accuracy and decay learning rate.
       if it % iterations_per_epoch == 0:
@@ -209,7 +224,7 @@ class FirstNN(object):
         val_acc = (self.predict(X_val) == Y_val).mean()
         train_acc_history.append(train_acc)
         val_acc_history.append(val_acc)
-
+        learning_rate *= learning_rate_decay
 
     return {
       'loss_history': loss_history,
@@ -237,12 +252,14 @@ class FirstNN(object):
     ###########################################################################
     # TODO: Implement this function; it should be VERY simple!                #
     ###########################################################################
-    
-    
+    z1 = X.dot(self.params['W1']) + self.params['b1']
+    a1 = sigmoid_func(z1)
+    z2 = a1.dot(self.params['W2']) + self.params['b2']
+    scores = z2
+    Y_pred = np.argmax(scores, axis=1)
     ###########################################################################
     #                              END OF YOUR CODE                           #
     ###########################################################################
 
     return Y_pred
-
-
+ 
