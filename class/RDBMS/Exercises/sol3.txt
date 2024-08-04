@@ -1,0 +1,28 @@
+1.
+X1 = Register ⨝ Courses
+X2 = π_{RNO, Year, Sem, Dept}(X1)
+X3 = γ_{RNO, Year, Sem, count(Dept) → DeptCount}(X2)
+σ_{DeptCount ≥ 3}(X3)
+π_{RNO, Year, Sem}(X3)
+
+
+2.
+X1 = Register ⨝ Courses
+X2 = π_{RNO, Year, Sem, Dept}(X1)
+X3 = γ_{RNO, Year, Sem, Dept, count(CNO) → CourseCount}(X2)
+σ_{1 ≤ CourseCount ≤ 2}(X3)
+π_{RNO, Year, Sem, Dept}(X3)
+
+
+3.
+X1 = Register ⨝ Courses
+X2 = π_{RNO, Dept}(X1)
+X3 = γ_{RNO, Dept, count(CNO) → CourseCount}(X2)
+σ_{CourseCount ≤ 1}(X3)
+π_{RNO, Dept}(X3)
+
+4.
+X1 = Register ⨝ Courses
+X2 = π_{RNO1: RNO, Dept, CNO}(X1) ⨝ π_{RNO2: RNO, Dept, CNO}(X1)
+X3 = π_{RNO1, RNO2, Dept}(γ_{RNO1, RNO2, Dept, count(CNO) → Count1}(X2) ⨝ γ_{RNO2, Dept, count(CNO) → Count2}(X2) σ_{Count1 = Count2})
+σ_{Count2 ≥ 1}(X3)

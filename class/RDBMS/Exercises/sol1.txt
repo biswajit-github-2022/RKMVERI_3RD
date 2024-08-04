@@ -1,0 +1,107 @@
+SQL Table Definitions
+Schema for the Product relation:
+sql
+Copy code
+CREATE TABLE Product (
+    maker VARCHAR(50),
+    model INT PRIMARY KEY,
+    type VARCHAR(20)
+);
+Schema for the PC relation:
+sql
+Copy code
+CREATE TABLE PC (
+    model INT PRIMARY KEY,
+    speed DECIMAL(3, 1),
+    ram INT,
+    hd INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (model) REFERENCES Product(model)
+);
+Schema for the Laptop relation:
+sql
+Copy code
+CREATE TABLE Laptop (
+    model INT PRIMARY KEY,
+    speed DECIMAL(3, 1),
+    ram INT,
+    hd INT,
+    screen DECIMAL(4, 1),
+    price DECIMAL(10, 2),
+    FOREIGN KEY (model) REFERENCES Product(model)
+);
+Schema for the Printer relation:
+sql
+Copy code
+CREATE TABLE Printer (
+    model INT PRIMARY KEY,
+    color VARCHAR(3), -- 'yes' or 'no'
+    type VARCHAR(20),
+    price DECIMAL(10, 2),
+    FOREIGN KEY (model) REFERENCES Product(model)
+);
+Alter Printer schema to delete attribute color:
+sql
+Copy code
+ALTER TABLE Printer
+DROP COLUMN color;
+Alter Laptop schema to add attributes eth and usb:
+sql
+Copy code
+ALTER TABLE Laptop
+ADD eth INT DEFAULT 0,
+ADD usb INT DEFAULT 0;
+Relational Algebra
+Relational Algebra for Product:
+scss
+Copy code
+Product(maker, model, type)
+This denotes a relation with attributes maker, model, and type.
+
+Relational Algebra for PC:
+scss
+Copy code
+PC(model, speed, ram, hd, price)
+This denotes a relation with attributes model, speed, ram, hd, and price.
+
+Relational Algebra for Laptop:
+scss
+Copy code
+Laptop(model, speed, ram, hd, screen, price)
+This denotes a relation with attributes model, speed, ram, hd, screen, and price.
+
+Relational Algebra for Printer:
+scss
+Copy code
+Printer(model, type, price)
+This denotes a relation with attributes model, type, and price.
+
+Relational Algebra for modifying the Printer relation:
+scss
+Copy code
+π_model, type, price(Printer)
+This denotes projecting the model, type, and price attributes from the Printer relation, effectively removing the color attribute.
+
+Relational Algebra for modifying the Laptop relation:
+scss
+Copy code
+Laptop_new(model, speed, ram, hd, screen, price, eth, usb) ← Laptop(model, speed, ram, hd, screen, price) × (γ[eth:=0, usb:=0](π_ε(Laptop)))
+This denotes extending the Laptop relation with the new attributes eth and usb, defaulting them to 0.
+
+Keys and Foreign Keys
+Product:
+
+Primary Key: model
+PC:
+
+Primary Key: model
+Foreign Key: model references Product(model)
+Laptop:
+
+Primary Key: model
+Foreign Key: model references Product(model)
+Printer:
+
+Primary Key: model
+Foreign Key: model references Product(model)
+This should cover all parts of the problem, including the SQL schema definitions, the relational algebra, and the specification of keys and foreign keys.
