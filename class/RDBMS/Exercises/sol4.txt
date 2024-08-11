@@ -1,0 +1,185 @@
+1.
+mysql> select starsin.starname,starsin.title,stardetails.gender from  starsin JOIN stardetails  where starsin.starname = stardetails.starname;
++--------------------+-----------------------------+--------+
+| starname           | title                       | gender |
++--------------------+-----------------------------+--------+
+| A.R. RAHMAN        | LAGAAN                      | M      |
+| ADITYA CHOPRA      | DILWALE DULHANIA LE JAYENGE | M      |
+| ALKA YAGNIK        | LAGAAN                      | F      |
+| AMIR KHAN          | LAGAAN                      | M      |
+| AMITABH BACHHAN    | NAMAK HALAL                 | M      |
+| AMITABH BACHHAN    | NAMAK HARAM                 | M      |
+| AMITABH BACHHAN    | SHOLAY                      | M      |
+| ANU MALIK          | BAAZIGAR                    | M      |
+| ASHUTOSH GOWARIKER | LAGAAN                      | M      |
+| DHARMENDRA         | SHOLAY                      | M      |
+| GAYATRI JOSHI      | SWADES                      | F      |
+| GRACY SINGH        | LAGAAN                      | F      |
+| HEMA MALINI        | SHOLAY                      | F      |
+| JAVED AKHTAR       | LAGAAN                      | M      |
+| KAJOL              | BAAZIGAR                    | F      |
+| KAJOL              | DILWALE DULHANIA LE JAYENGE | F      |
+| KISHORE KUMAR      | NAMAK HALAL                 | M      |
+| SALMAN KHAN        | KARAN ARJUN                 | M      |
+| SHAHRUKH KHAN      | BAAZIGAR                    | M      |
+| SHAHRUKH KHAN      | BAAZIGAR                    | M      |
+| SHAHRUKH KHAN      | CHAK DE! INDIA              | M      |
+| SHAHRUKH KHAN      | DILWALE DULHANIA LE JAYENGE | M      |
+| SHAHRUKH KHAN      | KARAN ARJUN                 | M      |
+| SHAHRUKH KHAN      | SWADES                      | M      |
+| SHILPA SHETTY      | BAAZIGAR                    | F      |
+| SUKHWINDER SINGH   | CHAK DE! INDIA              | M      |
+| UDIT NARAYAN       | LAGAAN                      | M      |
++--------------------+-----------------------------+--------+
+27 rows in set (0.00 sec)
+
+
+2.1.
+mysql> select starsin.starname,movies.genre  from movies,starsin where starsin.t
+itle = movies.title group by starsin.starname, movies.genre order by starsin.starname ASC, movies.genre ASC;
++--------------------+----------+
+| starname           | genre    |
++--------------------+----------+
+| A.R. RAHMAN        | DRAMA    |
+| ADITYA CHOPRA      | ROMANCE  |
+| ALKA YAGNIK        | DRAMA    |
+| AMIR KHAN          | DRAMA    |
+| AMITABH BACHHAN    | ACTION   |
+| AMITABH BACHHAN    | COMEDY   |
+| AMITABH BACHHAN    | DRAMA    |
+| ANU MALIK          | THRILLER |
+| ASHUTOSH GOWARIKER | DRAMA    |
+| DHARMENDRA         | ACTION   |
+| GAYATRI JOSHI      | DRAMA    |
+| GRACY SINGH        | DRAMA    |
+| HEMA MALINI        | ACTION   |
+| JAVED AKHTAR       | DRAMA    |
+| KAJOL              | ROMANCE  |
+| KAJOL              | THRILLER |
+| KISHORE KUMAR      | COMEDY   |
+| SALMAN KHAN        | DRAMA    |
+| SHAHRUKH KHAN      | DRAMA    |
+| SHAHRUKH KHAN      | ROMANCE  |
+| SHAHRUKH KHAN      | SPORTS   |
+| SHAHRUKH KHAN      | THRILLER |
+| SHILPA SHETTY      | THRILLER |
+| SUKHWINDER SINGH   | SPORTS   |
+| UDIT NARAYAN       | DRAMA    |
++--------------------+----------+
+25 rows in set (0.02 sec)
+
+
+2.2
+mysql> select starname,genre from (select distinct starname,genre,COUNT(distinct title) as counter FROM ( select starname,title,genre from movies NATURAL JOIN starsin) as R group by genre,starname) as M wh
+ere counter>=2;
++---------------+-------+
+| starname      | genre |
++---------------+-------+
+| SHAHRUKH KHAN | DRAMA |
++---------------+-------+
+1 row in set (0.00 sec)
+
+
+
+
+Q. worked in every genre
+mysql> select starname from (select starname,genre,COUNT(*) as counter FROM ( select starname,genre from movies NATURAL JOIN starsin) as R group by genre,starname) as M where counter=6;
+Empty set (0.00 sec)
+
+
+2.6.
+mysql> select distinct starname,genre from movies,starsin where (starname, genre) not in (select starname,genre from movies NATURAL JOIN starsin);
++--------------------+----------+
+| starname           | genre    |
++--------------------+----------+
+| ANU MALIK          | DRAMA    |
+| ANU MALIK          | ACTION   |
+| ANU MALIK          | COMEDY   |
+| ANU MALIK          | ROMANCE  |
+| ANU MALIK          | SPORTS   |
+| KAJOL              | DRAMA    |
+| KAJOL              | ACTION   |
+| KAJOL              | COMEDY   |
+| KAJOL              | SPORTS   |
+| SHAHRUKH KHAN      | ACTION   |
+| SHAHRUKH KHAN      | COMEDY   |
+| SHILPA SHETTY      | DRAMA    |
+| SHILPA SHETTY      | ACTION   |
+| SHILPA SHETTY      | COMEDY   |
+| SHILPA SHETTY      | ROMANCE  |
+| SHILPA SHETTY      | SPORTS   |
+| SUKHWINDER SINGH   | DRAMA    |
+| SUKHWINDER SINGH   | ACTION   |
+| SUKHWINDER SINGH   | COMEDY   |
+| SUKHWINDER SINGH   | ROMANCE  |
+| SUKHWINDER SINGH   | THRILLER |
+| ADITYA CHOPRA      | DRAMA    |
+| ADITYA CHOPRA      | ACTION   |
+| ADITYA CHOPRA      | COMEDY   |
+| ADITYA CHOPRA      | SPORTS   |
+| ADITYA CHOPRA      | THRILLER |
+| SALMAN KHAN        | ACTION   |
+| SALMAN KHAN        | COMEDY   |
+| SALMAN KHAN        | ROMANCE  |
+| SALMAN KHAN        | SPORTS   |
+| SALMAN KHAN        | THRILLER |
+| A.R. RAHMAN        | ACTION   |
+| A.R. RAHMAN        | COMEDY   |
+| A.R. RAHMAN        | ROMANCE  |
+| A.R. RAHMAN        | SPORTS   |
+| A.R. RAHMAN        | THRILLER |
+| ALKA YAGNIK        | ACTION   |
+| ALKA YAGNIK        | COMEDY   |
+| ALKA YAGNIK        | ROMANCE  |
+| ALKA YAGNIK        | SPORTS   |
+| ALKA YAGNIK        | THRILLER |
+| AMIR KHAN          | ACTION   |
+| AMIR KHAN          | COMEDY   |
+| AMIR KHAN          | ROMANCE  |
+| AMIR KHAN          | SPORTS   |
+| AMIR KHAN          | THRILLER |
+| ASHUTOSH GOWARIKER | ACTION   |
+| ASHUTOSH GOWARIKER | COMEDY   |
+| ASHUTOSH GOWARIKER | ROMANCE  |
+| ASHUTOSH GOWARIKER | SPORTS   |
+| ASHUTOSH GOWARIKER | THRILLER |
+| GRACY SINGH        | ACTION   |
+| GRACY SINGH        | COMEDY   |
+| GRACY SINGH        | ROMANCE  |
+| GRACY SINGH        | SPORTS   |
+| GRACY SINGH        | THRILLER |
+| JAVED AKHTAR       | ACTION   |
+| JAVED AKHTAR       | COMEDY   |
+| JAVED AKHTAR       | ROMANCE  |
+| JAVED AKHTAR       | SPORTS   |
+| JAVED AKHTAR       | THRILLER |
+| UDIT NARAYAN       | ACTION   |
+| UDIT NARAYAN       | COMEDY   |
+| UDIT NARAYAN       | ROMANCE  |
+| UDIT NARAYAN       | SPORTS   |
+| UDIT NARAYAN       | THRILLER |
+| AMITABH BACHHAN    | ROMANCE  |
+| AMITABH BACHHAN    | SPORTS   |
+| AMITABH BACHHAN    | THRILLER |
+| KISHORE KUMAR      | DRAMA    |
+| KISHORE KUMAR      | ACTION   |
+| KISHORE KUMAR      | ROMANCE  |
+| KISHORE KUMAR      | SPORTS   |
+| KISHORE KUMAR      | THRILLER |
+| DHARMENDRA         | DRAMA    |
+| DHARMENDRA         | COMEDY   |
+| DHARMENDRA         | ROMANCE  |
+| DHARMENDRA         | SPORTS   |
+| DHARMENDRA         | THRILLER |
+| HEMA MALINI        | DRAMA    |
+| HEMA MALINI        | COMEDY   |
+| HEMA MALINI        | ROMANCE  |
+| HEMA MALINI        | SPORTS   |
+| HEMA MALINI        | THRILLER |
+| GAYATRI JOSHI      | ACTION   |
+| GAYATRI JOSHI      | COMEDY   |
+| GAYATRI JOSHI      | ROMANCE  |
+| GAYATRI JOSHI      | SPORTS   |
+| GAYATRI JOSHI      | THRILLER |
++--------------------+----------+
+89 rows in set (0.01 sec)
