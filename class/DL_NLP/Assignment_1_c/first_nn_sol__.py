@@ -34,7 +34,7 @@ class FirstNN(object):
 
     """
 
-    def __init__(self, input_dims, num_nodes_lr1, num_classes, param_inits='small_std',std=1e-4):
+    def __init__(self, input_dims, num_nodes_lr1, num_classes, param_init="small_std",std=1e-4):
         
         """
         Initialize the model. Weights are initialized to small random values and
@@ -55,39 +55,28 @@ class FirstNN(object):
         """
         
         self.params = {}
-
+        
         self.params['b1'] = np.zeros(num_nodes_lr1)
         self.params['b2'] = np.zeros(num_classes)
 
         self.params['V_b1'] = np.zeros(num_nodes_lr1)
         self.params['V_b2'] = np.zeros(num_classes)
 
-        if param_inits=='small_std':
-            self.params['W1']=std * np.random.randn(input_dims,num_nodes_lr1)
-            self.params['W2']=std * np.random.randn(num_nodes_lr1,num_classes)
+        if param_init == "small_std":
+            print(param_init)
+            self.params["W1"] = std*np.random.randn(input_dims , num_nodes_lr1)
+            self.params["W2"] = std*np.random.randn( num_nodes_lr1,num_classes )
+        elif param_init == "ninn_std":
+            print(param_init)
+            self.params["W1"] = np.random.normal(loc=0.0, scale =1/np.sqrt(input_dims ), size =( input_dims, num_nodes_lr1))
+            self.params["W2"] = np.random.normal(loc=0.0, scale =1/np.sqrt(num_nodes_lr1), size =( num_nodes_lr1, num_classes ))          
+        elif param_init == "Xavier":
+            print(param_init)
+            self.params["W1"] = np.random.normal(loc=0.0, scale =np.sqrt(2/(input_dims + num_nodes_lr1)), size =( input_dims, num_nodes_lr1))
+            self.params["W2"] = np.random.normal(loc=0.0, scale =np.sqrt(2/(num_nodes_lr1 + num_classes)), size =( num_nodes_lr1, num_classes ))
 
-        elif param_inits=='ninn_std':
-            self.params['W1']=np.random.normal(loc=0.0,scale=1/np.sqrt(input_dims),size=(input_dims,num_nodes_lr1))
-            self.params['W2']=np.random.normal(loc=0.0,scale=1/np.sqrt(num_nodes_lr1),size=(num_nodes_lr1,num_classes))
-            
-
-        elif param_inits=='Xavier':
-            print(param_inits)
-            self.params['W1']=np.random.normal(loc=0.0,scale=np.sqrt(2/input_dims+num_nodes_lr1),size=(input_dims,num_nodes_lr1))
-            self.params['W2']=np.random.normal(loc=0.0,scale=np.sqrt(2/num_nodes_lr1+num_classes),size=(num_nodes_lr1,num_classes))
-            self.best_params=copy.deepcopy(self.params)
-
-
-
-
-
-
-        # self.params['W1'] = std * np.random.randn(input_dims, num_nodes_lr1)
-        # self.params['b1'] = np.zeros(num_nodes_lr1)
-        # self.params['W2'] = std * np.random.randn(num_nodes_lr1, num_classes)
-        # self.params['b2'] = np.zeros(num_classes)
-        self.params['V_W1']=np.zeros((input_dims,num_nodes_lr1))
-        self.params['V_W2']=np.zeros((num_nodes_lr1,num_classes))
+        self.params["V_W1"]= np.zeros((input_dims + num_nodes_lr1))
+        self.params["V_W2"]= np.zeros((num_nodes_lr1 + num_classes))
 
         self.best_params = copy.deepcopy(self.params)
         
@@ -193,7 +182,7 @@ class FirstNN(object):
         return grads
     
     
-    def optimizer(self, grads,update_rule='gd'):
+    def optimizer(self, grads,update_rule):
         
         """
         Update parameters using gradient decent
@@ -211,23 +200,31 @@ class FirstNN(object):
         # using gradient descent. You'll need to use the gradients stored in    #
         # the grads dictionary defined above.                                   #
         #########################################################################
-
-        if update_rule=='gd':    
+        if update_rule == "gd":
             self.params['W1'] -= self.learning_rate*grads['W1']
             self.params['b1'] -= self.learning_rate*grads['b1']
             self.params['W2'] -= self.learning_rate*grads['W2']
             self.params['b2'] -= self.learning_rate*grads['b2']
-        elif update_rule =='m_gd':
-            self.params['V_W1'] =self.beta_moment*self.params['V_W1'] - self.learning_rate*grads['W1']
-            self.params['W1']+=self.params['V_W1']
-            self.params['V_b1'] =self.beta_moment*self.params['V_b1'] - self.learning_rate*grads['b1']
-            self.params['b1']+=self.params['V_b1']
-            self.params['V_W2'] =self.beta_moment*self.params['V_W2'] - self.learning_rate*grads['W2']
-            self.params['W2']+=self.params['V_W2']
-            self.params['V_b2'] =self.beta_moment*self.params['V_b2'] - self.learning_rate*grads['b2']
-            self.params['b2']+=self.params['V_b2']
-            self
-        elif update_rule =='m_gd':
+        elif update_rule=="m_gd":
+            # self.params["V_W1"] = self.beta * self.params["V_W1"] - self.learning_rate * grads["W1"]
+            # self.params["W1"] += self.params["V_W1"]
+            # self.params["V_W1"] = self.beta * self.params["V_W1"] - self.learning_rate * grads["W1"]
+            # self.params["W1"] += self.params["V_W1"]
+
+            # self.params["V_W2"] = self.beta * self.params["V_W2"] - self.learning_rate * grads["W2"]
+            # self.params["W2"] += self.params["V_W1"]
+            # self.params["V_W2"] = self.beta * self.params["V_W2"] - self.learning_rate * grads["W2"]
+            # self.params["W2"] += self.params["V_W2"]
+
+            self.params['V_W1'] =self.beta*self.params['V_W1'] - self.learning_rate*grads['W1']
+            self.parms['W1']+=self.params['V_W1']
+            self.params['V_b1'] =self.beta*self.params['V_b1'] - self.learning_rate*grads['b1']
+            self.parms['b1']+=self.params['V_b1']
+            self.params['V_W2'] =self.beta*self.params['V_W2'] - self.learning_rate*grads['W2']
+            self.parms['W2']+=self.params['V_W2']
+            self.params['V_b2'] =self.beta*self.params['V_b2'] - self.learning_rate*grads['b2']
+            self.parms['b2']+=self.params['V_b2']
+        elif update_rule == "n_gd" : 
             pass
         #########################################################################
         #                             END OF YOUR CODE                          #
@@ -240,9 +237,9 @@ class FirstNN(object):
               num_epoch=None,
               batch_size=200, 
               learning_rate=1e-3, 
-              verbose=False,
-              update_rule='gd',
-              beta_moment=1e-1
+              update_rule="gd",
+              beta=1e-1,
+              verbose=False
              ):
         
         """
@@ -264,9 +261,9 @@ class FirstNN(object):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.num_epoch = num_epoch
+        
         self.update_rule=update_rule
-        self.beta_moment=beta_moment
-
+        self.beta=beta
         loss_history_batch = []
         loss_history_epoch = []
         train_acc_history = []
@@ -313,7 +310,7 @@ class FirstNN(object):
                 grads_batch = self.backword(X_batch, Y_batch, prob_scores)
 
                 # Update the parameters
-                self.optimizer(grads_batch,update_rule)
+                self.optimizer(grads_batch,beta)
 
                 # Every epoch, check train and val accuracy and record the best weights
                 if it % iterations_per_epoch == 0:
