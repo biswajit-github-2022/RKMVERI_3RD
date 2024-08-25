@@ -1,5 +1,5 @@
 library(readr)
-data <- read_csv("D:/x_MSC/3rd_sem/class/Econometry_and_Finance/Finance/Assignments/assignment_3/selected/combined_returns.csv")
+data <- read_csv("D:/x_MSC/3rd_sem/class/Econometry_and_Finance/Finance/Assignments/assignment_3/selected_2/combined_returns.csv")
 View(data)
 
 
@@ -24,6 +24,9 @@ print(mean_vector)
 # Check the dimensions of the mean vector
 length(mean_vector)
 #-------------------------------------------------------------------------------------
+#Find Weights
+
+
 # Install and load the quadprog package if you haven't already
 install.packages("quadprog")
 library(quadprog)
@@ -49,6 +52,8 @@ w <- solution$solution
 # Print the result
 print(w)
 #-------------------------------------------------------------------------------------
+
+# Not to run
 
 V <- cov_matrix#Covariance_Matrix
   
@@ -83,6 +88,8 @@ plot( min_variances, b_values, type = "l", col = "blue",
      xlab = "Portfolio Return (b)", ylab = "Minimum Variance",
      main = "Minimum Variance vs. Portfolio Return")
 #-------------------------------------------------------------------------------------
+
+# Plot
 
 # Assume you already have 'cov_matrix' (10x10) and 'mean_vector' (length 10)
 # Create the 1_vector (length 10)
@@ -119,8 +126,8 @@ cat("Dimension of B:", dim(B), "\n")
 cat("Dimension of C:", dim(C), "\n")
 cat("Dimension of D:", dim(D), "\n")
 
+b_values <- seq(min(mean_vector), max(mean_vector), length.out = 50)
 sigma_min_sq_values <- numeric(length(b_values))
-
 # Calculate sigma_min_sq for each b_value in b_values
 for (i in seq_along(b_values)) {
   sigma_min_sq_values[i] <- (C / D) * (b_values[i] - (B / C))^2 + (1 / C)
