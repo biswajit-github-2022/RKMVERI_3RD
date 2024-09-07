@@ -87,113 +87,93 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    from util import Stack
+    
+    f = util.Stack()
+    start = problem.getStartState()
+    exploredNodes =[]
+    startNode = (start, [])
+    f.push(startNode)
 
-    # stackXY: ((x,y),[path]) #
-    stackXY = Stack()
+    while not f.isEmpty():
+        currentState, actions = f.pop()
+        if problem.isGoalState(currentState):
+            return actions
+        if currentState not in exploredNodes:
 
-    visited = [] # Visited states
-    path = [] # Every state keeps it's path from the starting state
+            exploredNodes.append(currentState)
 
-    # Check if initial state is goal state #
-    if problem.isGoalState(problem.getStartState()):
-        return []
+            for successorState, successorAction in problem.getSuccessors(currentState):
 
-    # Start from the beginning and find a solution, path is an empty list #
-    stackXY.push((problem.getStartState(),[]))
+                newActions = actions + [successorAction]
+                newNode = (successorState, newActions)
 
-    while(True):
+                f.push(newNode)
 
-        # Terminate condition: can't find solution #
-        if stackXY.isEmpty():
-            return []
+    return actions
 
-        # Get informations of current state #
-        xy,path = stackXY.pop() # Take position and path
-        visited.append(xy)
-
-        # Comment this and uncomment 125. This only works for autograder    #
-        # In lectures we check if a state is a goal when we find successors #
-
-        # Terminate condition: reach goal #
-        if problem.isGoalState(xy):
-            return path
-
-        # Get successors of current state #
-        succ = problem.getSuccessors(xy)
-
-        # Add new states in stack and fix their path #
-        if succ:
-            for item in succ:
-                if item[0] not in visited:
-
-                # Lectures code:
-                # All impementations run in autograder and in comments i write
-                # the proper code that i have been taught in lectures
-                # if item[0] not in visited and item[0] not in (state[0] for state in stackXY.list):
-                #   if problem.isGoalState(item[0]):
-                #       return path + [item[1]]
-
-                    newPath = path + [item[1]] # Calculate new path
-                    stackXY.push((item[0],newPath))
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    from util import Queue
+    f = util.Queue()
+    start = problem.getStartState()
+    exploredNodes =[]
+    startNode = (start, [])
+    f.push(startNode)
 
-    # queueXY: ((x,y),[path]) #
-    queueXY = Queue()
+    while not f.isEmpty():
 
-    visited = [] # Visited states
-    path = [] # Every state keeps it's path from the starting state
+        currentState, actions = f.pop()
 
-    # Check if initial state is goal state #
-    if problem.isGoalState(problem.getStartState()):
-        return []
+        if problem.isGoalState(currentState):
 
-    # Start from the beginning and find a solution, path is empty list #
-    queueXY.push((problem.getStartState(),[]))
+            return actions
 
-    while(True):
+        if currentState not in exploredNodes:
 
-        # Terminate condition: can't find solution #
-        if queueXY.isEmpty():
-            return []
+            exploredNodes.append(currentState)
 
-        # Get informations of current state #
-        xy,path = queueXY.pop() # Take position and path
-        visited.append(xy)
+            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
 
-        # Comment this and uncomment 179. This is only works for autograder
-        # In lectures we check if a state is a goal when we find successors
+                newActions = actions + [successorAction]
+                newNode = (successorState, newActions)
 
-        # Terminate condition: reach goal #
-        if problem.isGoalState(xy):
-            return path
+                f.push(newNode)
 
-        # Get successors of current state #
-        succ = problem.getSuccessors(xy)
-
-        # Add new states in queue and fix their path #
-        if succ:
-            for item in succ:
-                if item[0] not in visited and item[0] not in (state[0] for state in queueXY.list):
-
-                    # Lectures code:
-                    # All impementations run in autograder and in comments i write
-                    # the proper code that i have been taught in lectures
-                    # if problem.isGoalState(item[0]):
-                    #   return path + [item[1]]
-
-                    newPath = path + [item[1]] # Calculate new path
-                    queueXY.push((item[0],newPath))
+    return actions
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
+    f = util.PriorityQueue()
+    start = problem.getStartState()
+    exploredNodes ={}
+    startNode = (start, [], 0)
+    f.push(startNode, 0)
+
+    while not f.isEmpty():
+
+        currentState, actions, currentCost = f.pop()
+
+        if problem.isGoalState(currentState):
+
+            return actions
+
+        if (currentState not in exploredNodes) or (currentCost < exploredNodes[currentState]):
+
+            exploredNodes[currentState] = currentCost
+
+            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
+
+                newActions = actions + [successorAction]
+                newCost = currentCost + successorCost
+                newNode = (successorState, newActions, newCost)
+
+                f.push(newNode, newCost)
+
+    return actions
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
@@ -206,6 +186,33 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
+    f = util.PriorityQueue()
+    start = problem.getStartState()
+    exploredNodes ={}
+    startNode = (start, [], 0)
+    f.push(startNode, 0)
+
+    while not f.isEmpty():
+
+        currentState, actions, currentCost = f.pop()
+
+        if problem.isGoalState(currentState):
+
+            return actions
+
+        if (currentState not in exploredNodes) or (currentCost < exploredNodes[currentState]):
+
+            exploredNodes[currentState] = currentCost
+
+            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
+
+                newActions = actions + [successorAction]
+                newCost = currentCost + successorCost
+                newNode = (successorState, newActions, newCost)
+
+                f.push(newNode, newCost+heuristic(successorState, problem))
+
+    return actions
     util.raiseNotDefined()
 
 
