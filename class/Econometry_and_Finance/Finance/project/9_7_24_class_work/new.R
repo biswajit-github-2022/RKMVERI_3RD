@@ -49,3 +49,4 @@ points(solution$solution[1], solution$solution[2], col = "red", pch = 19, cex = 
 legend("topright", legend = c("Objective Function", "x2 >= 1", "x1 >= 1", "x1 + x2 >= 2", "Solution"),
        col = c("black", "blue", "green", "red", "red"), lty = c(1, 2, 2, 2, 0), pch = c(NA, NA, NA, NA, 19))
 
+#------------------------------------------------------------------------------------------

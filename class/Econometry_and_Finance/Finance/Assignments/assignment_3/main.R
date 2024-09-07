@@ -53,43 +53,9 @@ w <- solution$solution
 print(w)
 #-------------------------------------------------------------------------------------
 
-# Not to run
-
-V <- cov_matrix#Covariance_Matrix
-  
-  # Define the mean returns vector mu (example)
-  mu <- mean_vector#Mean  # Replace with your actual mean returns
-  
-  # Initialize values of b
-  b_values <- seq(min(mu), max(mu), length.out = 50)
-
-# Initialize a vector to store minimum variances
-min_variances <- numeric(length(b_values))
-
-# Loop through each b and solve the optimization problem
-for (i in seq_along(b_values)) {
-  b <- b_values[i]
-  
-  # Define the constraints
-  Dmat <- 2 * V
-  dvec <- rep(0, nrow(V))
-  Amat <- cbind(rep(1, nrow(V)), mu)
-  bvec <- c(1, b)
-  
-  # Solve the quadratic programming problem
-  solution <- solve.QP(Dmat, dvec, Amat, bvec, meq = 1)
-  
-  # Store the minimum variance (objective function value)
-  min_variances[i] <- solution$value
-}
-
-# Plot the minimum variances against the values of b
-plot( min_variances, b_values, type = "l", col = "blue",
-     xlab = "Portfolio Return (b)", ylab = "Minimum Variance",
-     main = "Minimum Variance vs. Portfolio Return")
 #-------------------------------------------------------------------------------------
 
-# Plot
+# Unbounded closed form solution
 
 # Assume you already have 'cov_matrix' (10x10) and 'mean_vector' (length 10)
 # Create the 1_vector (length 10)
@@ -126,7 +92,7 @@ cat("Dimension of B:", dim(B), "\n")
 cat("Dimension of C:", dim(C), "\n")
 cat("Dimension of D:", dim(D), "\n")
 
-b_values <- seq(min(mean_vector), max(mean_vector), length.out = 50)
+b_values <- seq(-2, 2, length.out = 100)
 sigma_min_sq_values <- numeric(length(b_values))
 # Calculate sigma_min_sq for each b_value in b_values
 for (i in seq_along(b_values)) {
@@ -141,6 +107,56 @@ cat("Length of sigma_min_sq_values:", length(sigma_min_sq_values), "\n")
 cat("Structure of sigma_min_sq_values:\n")
 str(sigma_min_sq_values)
 
-plot( sigma_min_sq_values, b_values, type = "l", col = "blue",
+plot( sigma_min_sq_values, b_values, type = "l", col = "blue", ylim=c(-0.0015,0.003),
       xlab = "Minimum Variance", ylab = "Portfolio Return (b)",
       main = "Minimum Variance vs. Portfolio Return")
+
+w_mvp <-(inv_cov_matrix %*% one_vector)/C[1,1]
+w_mvp
+#-----------------------------------------------------------------------------------
+# Load the necessary library
+library(quadprog)
+
+# Assuming V (variance-covariance matrix) and mu (mean vector of returns) are predefined
+# V <- <your covariance matrix>
+# mu <- <your mean returns vector>
+
+# Number of assets
+mu<-mean_vector
+V<-cov_matrix
+
+n <- length(mu)
+
+b_values <- seq(min(mu), max(mu), length.out = 50)
+
+# Initialize a vector to store minimum variances
+min_variances <- numeric(length(b_values))
+
+# Loop through each b and solve the optimization problem
+for (i in seq_along(b_values)) {
+  b <- b_values[i]
+  
+  # Define the constraints
+  Dmat <-  2*V
+  dvec <- rep(0, nrow(V))
+  Amat <- cbind(rep(1, n), diag(n), mu)
+  bvec <- c(1,rep(0,10), b)
+  
+  # Solve the quadratic programming problem
+  solution <- solve.QP(Dmat, dvec, Amat, bvec, meq = 1)
+  
+  # Store the minimum variance (objective function value)
+  min_variances[i] <- solution$value
+}
+
+# Plot the minimum variances against the values of b
+plot(min_variances,b_values,  type = "l", col = "blue",
+     ylab = "Portfolio Return (b)", xlab = "Minimum Variance",
+     main = "Minimum Variance vs. Portfolio Return")
+
+
+min(min_variances)
+
+x <- 1:length(data$Return1)  # X-axis values
+y <- data$Return5
+plot(x, y, type = "l", col = "blue", lwd = 2, xlab = "X-axis", ylab = "Y-axis", main = "Line Plot Example")
