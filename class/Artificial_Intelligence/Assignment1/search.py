@@ -87,93 +87,86 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    
-    f = util.Stack()
-    start = problem.getStartState()
-    exploredNodes =[]
-    startNode = (start, [])
-    f.push(startNode)
+    # python3 pacman.py -l tinyMaze -p SearchAgent
+    # python3 pacman.py -l mediumMaze -p SearchAgent
+    # python3 pacman.py -l bigMaze -z .5 -p SearchAgent
+    from util import Stack
+    fringe = Stack()
+    start_state = problem.getStartState()
+    explored = set()
+    start_node = (start_state, [])
+    fringe.push(start_node) # start node in stack
+    while not fringe.isEmpty():
+        current_state, path_so_far = fringe.pop()
 
-    while not f.isEmpty():
-        currentState, actions = f.pop()
-        if problem.isGoalState(currentState):
-            return actions
-        if currentState not in exploredNodes:
+        if problem.isGoalState(current_state): # if current state is final 
+            # print(path_so_far)
+            return path_so_far
 
-            exploredNodes.append(currentState)
-
-            for successorState, successorAction in problem.getSuccessors(currentState):
-
-                newActions = actions + [successorAction]
-                newNode = (successorState, newActions)
-
-                f.push(newNode)
-
-    return actions
+        if current_state not in explored: # if not explored before add to explored
+            explored.add(current_state)
+            for neighbor, action, cost in problem.getSuccessors(current_state): # find its neighbours
+                # print((neighbor,action,cost))
+                new_path = path_so_far + [action]
+                next_node = (neighbor, new_path)
+                fringe.push(next_node)
+    return []
 
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    f = util.Queue()
-    start = problem.getStartState()
-    exploredNodes =[]
-    startNode = (start, [])
-    f.push(startNode)
+    # python3 pacman.py -l mediumMaze -p SearchAgent -a fn=bfs
+    # python3 pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5
+    from util import Queue
+    fringe = Queue()
+    start_state = problem.getStartState()
+    explored =set()
+    fringe.push((start_state, []))
+    while not fringe.isEmpty():
+        current_state, path_so_far = fringe.pop()
 
-    while not f.isEmpty():
+        if problem.isGoalState(current_state):
+            return path_so_far
 
-        currentState, actions = f.pop()
+        if current_state not in explored:
+            explored.add(current_state)
+            for neighbor, action, cost in problem.getSuccessors(current_state):
+                new_path = path_so_far + [action]
+                next_node = (neighbor, new_path)
+                fringe.push(next_node)
 
-        if problem.isGoalState(currentState):
-
-            return actions
-
-        if currentState not in exploredNodes:
-
-            exploredNodes.append(currentState)
-
-            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
-
-                newActions = actions + [successorAction]
-                newNode = (successorState, newActions)
-
-                f.push(newNode)
-
-    return actions
+    return []
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    f = util.PriorityQueue()
+    # python3 pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
+    # python3 pacman.py -l mediumDottedMaze -p StayEastSearchAgent
+    # python3 pacman.py -l mediumScaryMaze -p StayWestSearchAgent
+    from util import PriorityQueue
+    fringe = PriorityQueue()
     start = problem.getStartState()
-    exploredNodes ={}
-    startNode = (start, [], 0)
-    f.push(startNode, 0)
+    explored = set()
+    start_node = (start, [], 0)
+    fringe.push(start_node, 0)
+    while not fringe.isEmpty():
+        current_state, path_so_far, current_cost = fringe.pop()
 
-    while not f.isEmpty():
+        if problem.isGoalState(current_state):
+            return path_so_far
 
-        currentState, actions, currentCost = f.pop()
+        if (current_state not in explored) :
+            explored.add(current_state)
+            for neighbour, action, cost in problem.getSuccessors(current_state):
+                new_cost = current_cost + cost
+                new_action = path_so_far + [action]
+                next_node = (neighbour, new_action, new_cost)
+                fringe.push(next_node, new_cost)
 
-        if problem.isGoalState(currentState):
-
-            return actions
-
-        if (currentState not in exploredNodes) or (currentCost < exploredNodes[currentState]):
-
-            exploredNodes[currentState] = currentCost
-
-            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
-
-                newActions = actions + [successorAction]
-                newCost = currentCost + successorCost
-                newNode = (successorState, newActions, newCost)
-
-                f.push(newNode, newCost)
-
-    return actions
+    return []
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
@@ -186,33 +179,30 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    f = util.PriorityQueue()
-    start = problem.getStartState()
-    exploredNodes ={}
-    startNode = (start, [], 0)
-    f.push(startNode, 0)
+    # python3 pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+    from util import PriorityQueue
+    fringe = PriorityQueue()
+    start_state = problem.getStartState()
+    explored = set() # explored set
+    state_cost_map = {} # maintain a dict for cost of nodes 
+    start_node = (start_state, [], 0) # state, path to that state from start , actual cost
+    fringe.push(start_node,0)  # node, priority // Fringe set 
+    while not fringe.isEmpty():
+        current_state, path_so_far, path_cost = fringe.pop()
 
-    while not f.isEmpty():
+        if problem.isGoalState(current_state): # current state is goal
+            return path_so_far
 
-        currentState, actions, currentCost = f.pop()
+        if current_state not in explored: # if not explored 
+            explored.add(current_state)  # then add to explored set
+            state_cost_map[current_state] = path_cost # update the cost in the dict 
+            for neighbor, action, cost in problem.getSuccessors(current_state):
+                updated_cost = path_cost + cost
+                updated_path = path_so_far+ [action]
+                priority = updated_cost + heuristic(neighbor, problem)
+                fringe.push((neighbor, updated_path, updated_cost), priority)
 
-        if problem.isGoalState(currentState):
-
-            return actions
-
-        if (currentState not in exploredNodes) or (currentCost < exploredNodes[currentState]):
-
-            exploredNodes[currentState] = currentCost
-
-            for successorState, successorAction, successorCost in problem.getSuccessors(currentState):
-
-                newActions = actions + [successorAction]
-                newCost = currentCost + successorCost
-                newNode = (successorState, newActions, newCost)
-
-                f.push(newNode, newCost+heuristic(successorState, problem))
-
-    return actions
+    return []
     util.raiseNotDefined()
 
 
