@@ -1,0 +1,5 @@
+problem1. Class notes Relational algebra from Movies Dataset (5*3)
+problem2. Class notes SQL from Movies Dataset (5*3)
+problem3. ER-diagram Exercise-5(problem2) (10)
+problem4. Exercise-7(problem10) (10)
+problem5. Exercise-7(problem11) (10)
