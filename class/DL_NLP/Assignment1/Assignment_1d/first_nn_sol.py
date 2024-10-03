@@ -221,8 +221,26 @@ class FirstNN(object):
             self.params['b2'] += self.params['V_b2']
                   
         elif self.update_rule == 'nm_gd':
-            pass
+            # Nesterov momentum gradient descent
+            # Look ahead step: Compute the parameter update with the current velocity
+            W1_ahead = self.params['W1'] + self.beta_moment * self.params['V_W1']
+            b1_ahead = self.params['b1'] + self.beta_moment * self.params['V_b1']
+            W2_ahead = self.params['W2'] + self.beta_moment * self.params['V_W2']
+            b2_ahead = self.params['b2'] + self.beta_moment * self.params['V_b2']
+        
+            # Update the velocities based on the gradients computed at the "look-ahead" positions
+            self.params['V_W1'] = self.beta_moment * self.params['V_W1'] - self.learning_rate * grads['W1']
+            self.params['W1'] = W1_ahead + self.params['V_W1']
             
+            self.params['V_b1'] = self.beta_moment * self.params['V_b1'] - self.learning_rate * grads['b1']
+            self.params['b1'] = b1_ahead + self.params['V_b1']
+            
+            self.params['V_W2'] = self.beta_moment * self.params['V_W2'] - self.learning_rate * grads['W2']
+            self.params['W2'] = W2_ahead + self.params['V_W2']
+            
+            self.params['V_b2'] = self.beta_moment * self.params['V_b2'] - self.learning_rate * grads['b2']
+            self.params['b2'] = b2_ahead + self.params['V_b2']
+
         #########################################################################
         #                             END OF YOUR CODE                          #
         #########################################################################
