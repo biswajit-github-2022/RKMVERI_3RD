@@ -2,8 +2,8 @@
 # Factor Analysis
 # =======================================================
 library(readr)
-Stock_Price_Data <- read_csv("D:/x_MSC/3rd_sem/class/Multivariate_stat/MVS_2024/code/Stock Price Data.csv")
-View(Stock_Price_Data)
+Stock <- read_csv("D:/x_MSC/3rd_sem/class/Multivariate_stat/MVS_2024/code/Stock Price Data.csv")
+View(Stock)
 StockMat<-as.matrix(Stock)
 n<-nrow(StockMat)
 p<-ncol(StockMat)
@@ -13,18 +13,24 @@ p<-ncol(StockMat)
 # We will do the Principal Component Analysisby "prcomp" method
 StdStockMatPCA <- prcomp(StockMat,center = TRUE,scale. = TRUE)
 print(StdStockMatPCA)
+
 StdStockMatFactLoad<-StdStockMatPCA$rotation*t(matrix(rep(StdStockMatPCA$sdev,p),p,p))  #[\sqrt(\lambda_1)e_1:...:\sqrt(\lambda_p)e_p]
 print(StdStockMatFactLoad)  #Loadings on factors,i.e., full L matrix
+
 StdStockMatSpecVar<-1-t(apply(StdStockMatFactLoad^2,1,cumsum))  #Calculating diagonal elments of specific variance matrix taking groups of factors at a time
 print(StdStockMatSpecVar) #First column is the diagonal elements of \Psi when only one factor is considered, second column is the diagonal elements of \Psi when two factors are considered and so on
+
 CumProp=(cumsum(StdStockMatPCA$sdev^2))/sum(StdStockMatPCA$sdev^2)
 print(CumProp)  #Cumulative Percentages of variations explained by factors
+
 Res1=cor(StockMat)-StdStockMatFactLoad[,1]%*%t(StdStockMatFactLoad[,1])-diag(StdStockMatSpecVar[,1])
 print(Res1) #S-LL' -\Psi, when one factor is considered
 sum(Res1*Res1)
+
 Res2=cor(StockMat)-StdStockMatFactLoad[,c(1,2)]%*%t(StdStockMatFactLoad[,c(1,2)])-diag(StdStockMatSpecVar[,2])
 print(Res2) #S-LL' -\Psi, when two factors are considered
 sum(Res2*Res2)
+
 Res3=cor(StockMat)-StdStockMatFactLoad[,c(1,2,3)]%*%t(StdStockMatFactLoad[,c(1,2,3)])-diag(StdStockMatSpecVar[,3])
 print(Res3) #S-LL' -\Psi, when three factors are considered
 sum(Res3*Res3)
