@@ -1,7 +1,9 @@
 # =======================================================
 # Factor Analysis
 # =======================================================
-Stock=read.csv("Stock Price Data.csv", header=F)
+library(readr)
+Stock_Price_Data <- read_csv("D:/x_MSC/3rd_sem/class/Multivariate_stat/MVS_2024/code/Stock Price Data.csv")
+View(Stock_Price_Data)
 StockMat<-as.matrix(Stock)
 n<-nrow(StockMat)
 p<-ncol(StockMat)
