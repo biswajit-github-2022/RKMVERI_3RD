@@ -1,0 +1,688 @@
+<SMS>u hav 2 b nice 2 me i hurt mi muscle in mi wrist</SMS>
+<TRANS>You have to be nice to me I hurt my muscle in my wrist</TRANS>
+
+#
+
+<SMS>good morning i hope u in a better mood today</SMS>
+<TRANS>Good morning I hope you in a better mood today</TRANS>
+
+#
+
+<SMS>ye thanx u dont even speak 2 me 4 long but never mind ur on holiday</SMS>
+<TRANS>Yes thanks You dont even speak to me for long but never mind you on holiday</TRANS>
+
+#
+
+<SMS>hav bin reali happy since tlkin 2 u dnt no y tho</SMS>
+<TRANS>Have been really happy since talking to you Dont know why though</TRANS>
+
+#
+
+<SMS>this is my last text for 1 hour</SMS>
+<TRANS>This is my last text for one hour</TRANS>
+
+#
+
+<SMS>luv u lots and lots thanks for the txt</SMS>
+<TRANS>Love you lots and lots thanks for the text</TRANS>
+
+#
+
+<SMS>how r u im so bord</SMS>
+<TRANS>How are you Im so bored</TRANS>
+
+#
+
+<SMS>u ok baby cant wait for u to get home</SMS>
+<TRANS>you ok baby cant wait for you to get home</TRANS>
+
+#
+
+<SMS>really miss u darling</SMS>
+<TRANS>really miss you darling</TRANS>
+
+#
+
+<SMS>its ok i no u cant help it but like i said i do wan 2 take things slowly</SMS>
+<TRANS>Its ok I know you cant help it but like I said I do want to take things slowly</TRANS>
+
+#
+
+<SMS>glad its yr turn i was like that all weekend just could not stop</SMS>
+<TRANS>glad its your turn I was like that all weekend just could not stop</TRANS>
+
+#
+
+<SMS>just getting thru my washing</SMS>
+<TRANS>just getting through my washing</TRANS>
+
+#
+
+<SMS>dont b 2 long miss u love</SMS>
+<TRANS>Dont be to long Miss you Love</TRANS>
+
+#
+
+<SMS>hey hun how r u</SMS>
+<TRANS>Hey honey how are you</TRANS>
+
+#
+
+<SMS>just wanted 2 say a big thanx 4 my bday card</SMS>
+<TRANS>Just wanted to say a big thanks for my birthday card</TRANS>
+
+#
+
+<SMS>would b gd 2 c u some time soon</SMS>
+<TRANS>Would be good to see you some time soon</TRANS>
+
+#
+
+<SMS>cool sorry 2 have put u in the positon were i needed 2 ask</SMS>
+<TRANS>Cool sorry to have put you in the position where I needed to ask</TRANS>
+
+#
+
+<SMS>in this morning taking a break</SMS>
+<TRANS>in this morning taking a break</TRANS>
+
+#
+
+<SMS>what studying have u got to do</SMS>
+<TRANS>What studying have you got to do</TRANS>
+
+#
+
+<SMS>not doing anything bit bored</SMS>
+<TRANS>Not doing anything bit bored</TRANS>
+
+#
+
+<SMS>in fact what time u finish</SMS>
+<TRANS>in fact what time you finish</TRANS>
+
+#
+
+<SMS>im fine baby u cumin 2 c</SMS>
+<TRANS>Im fine baby you coming to see</TRANS>
+
+#
+
+<SMS>me wel i fink bein at home makes me feel a lot more stressed den bein away from it</SMS>
+<TRANS>Me Well I think being at home makes me feel a lot more stressed than being away from it</TRANS>
+
+#
+
+<SMS>ok wel me n him r over</SMS>
+<TRANS>ok Well me and him are over</TRANS>
+
+#
+
+<SMS>i wll leave same time</SMS>
+<TRANS>I will leave same time</TRANS>
+
+#
+
+<SMS>im goin 2 get the bus</SMS>
+<TRANS>Im going to get the bus</TRANS>
+
+#
+
+<SMS>bt thn u wud b cold u can hve ur glves if u wnt them</SMS>
+<TRANS>But then you would be cold You can have your gloves if you want them</TRANS>
+
+#
+
+<SMS>luv u sxc</SMS>
+<TRANS>Love you sexy</TRANS>
+
+#
+
+<SMS>k dnt wry huni ye im k</SMS>
+<TRANS>Ok dont worry honey Yes Im ok</TRANS>
+
+#
+
+<SMS>my lil sis loves u</SMS>
+<TRANS>My little sister loves you</TRANS>
+
+#
+
+<SMS>she is sleeping</SMS>
+<TRANS>She is sleeping</TRANS>
+
+#
+
+<SMS>well plz go home and txt me then so i can ring u coz im not going up</SMS>
+<TRANS>Well please go home and text me then so I can ring you because Im not going up</TRANS>
+
+#
+
+<SMS>so txt when u r at ur house</SMS>
+<TRANS>so text when you are at your house</TRANS>
+
+#
+
+<SMS>hello there im lukin 4 sum1 sxc</SMS>
+<TRANS>Hello there Im looking for someone sexy</TRANS>
+
+#
+
+<SMS>cud u help me out</SMS>
+<TRANS>could you help me out</TRANS>
+
+#
+
+<SMS>i want u baby i cnt help it mate</SMS>
+<TRANS>I want you baby I cant help it mate</TRANS>
+
+#
+
+<SMS>i did nt rele no wot i was dng</SMS>
+<TRANS>I did not really know what I was doing</TRANS>
+
+#
+
+<SMS>ur a gud in kissin</SMS>
+<TRANS>you are good in kissing</TRANS>
+
+#
+
+<SMS>i wna feel u 2 sry i jst propa lied on u</SMS>
+<TRANS>I want feel you too Sorry I just proper lied on you</TRANS>
+
+#
+
+<SMS>i love u so much i love ur lips txt back sxc</SMS>
+<TRANS>I love you so much I love your lips text back sexy</TRANS>
+
+#
+
+<SMS>oh my god babe i got a wel hot flush wen i finish speakin 2 u work dat out</SMS>
+<TRANS>Oh my god babe I got a well hot flush when I finish speaking to you work that out</TRANS>
+
+#
+
+<SMS>im cold but then all of a sudden</SMS>
+<TRANS>Im cold but then all of a sudden</TRANS>
+
+#
+
+<SMS>u wud do neways and i wll defor come pick u up cuz we got ta go christmas shoppin</SMS>
+<TRANS>You would do anyway and I will therefore come pick you up because we got to go Christmas shopping</TRANS>
+
+#
+
+<SMS>can u ring me on my house phone plz after u got this text ok speak then 2 u</SMS>
+<TRANS>can you ring me on my house phone please after you got this text ok speak then to you</TRANS>
+
+#
+
+<SMS>ye i think someone robbed ur game off u bcuz she keeps askin can she go on me 2 play crash</SMS>
+<TRANS>yes I think someone robbed your game off you because she keeps asking can she go on me to play crash</TRANS>
+
+#
+
+<SMS>i sent u a 4wrd did u gt it i wl snd it l8a</SMS>
+<TRANS>I sent you a forward did you get it I will send it later</TRANS>
+
+#
+
+<SMS>wt u up 2 goin 2nyt 2 my granny wt bout u</SMS>
+<TRANS>What you up to going tonight to my grandmother What about you</TRANS>
+
+#
+
+<SMS>hi dad txt me if u can ok and i will txt u back if i can and how are u</SMS>
+<TRANS>Hi dad text me if you can ok and i will text you back if i can and how are you</TRANS>
+
+#
+
+<SMS>no of course not u r the only reason im online so i can txt</SMS>
+<TRANS>no of course not you are the only reason Im online so I can text</TRANS>
+
+#
+
+<SMS>do u have 2moz afternoon of i best leave</SMS>
+<TRANS>do you have tomorrow afternoon off I best leave</TRANS>
+
+#
+
+<SMS>txt on my numba if u can</SMS>
+<TRANS>text on my number if you can</TRANS>
+
+#
+
+<SMS>hi i was just wonderin somthin ur frnd said u told him bout wot i said rit</SMS>
+<TRANS>Hi I was just wondering something your friend said you told him about what I said right</TRANS>
+
+#
+
+<SMS>hey ya have u done yr case study</SMS>
+<TRANS>Hey you Have you done your case study</TRANS>
+
+#
+
+<SMS>i have FINALLY c u 2moz love ya</SMS>
+<TRANS>I have finally See you tomorrow Love you</TRANS>
+
+#
+
+<SMS>hi honey it s me how r u</SMS>
+<TRANS>Hi honey It is me How are you</TRANS>
+
+#
+
+<SMS>i just wanted to say hi have a nice day i love u</SMS>
+<TRANS>I just wanted to say hi Have a nice day I love you</TRANS>
+
+#
+
+<SMS>dat s it we not getin 2getha she dnt want 2 eitha</SMS>
+<TRANS>That is it We not getting together she dont want to either</TRANS>
+
+#
+
+<SMS>i fink she jst wants a piece of the power</SMS>
+<TRANS>I think She just wants a piece of the power</TRANS>
+
+#
+
+<SMS>dun no if i l go</SMS>
+<TRANS>Dont know if I will go</TRANS>
+
+#
+
+<SMS>fone me if u can on me mobile cos i got a bit of privacy then</SMS>
+<TRANS>Phone me if you can on my mobile because i got a bit of privacy then</TRANS>
+
+#
+
+<SMS>im still feelin bad now she made it worse</SMS>
+<TRANS>Im still feeling bad now she made it worse</TRANS>
+
+#
+
+<SMS>okay so you will tell me everything tomorrow</SMS>
+<TRANS>Okay so you will tell me everything tomorrow</TRANS>
+
+#
+
+<SMS>are you working tomorrow</SMS>
+<TRANS>Are you working tomorrow</TRANS>
+
+#
+
+<SMS>wen u goin im movin down nxt summer</SMS>
+<TRANS>When you going Im moving down next summer</TRANS>
+
+#
+
+<SMS>hey u bad boy im bored in the library</SMS>
+<TRANS>Hey you bad boy Im bored in the library</TRANS>
+
+#
+
+<SMS>im just sittin in the lirbary just now</SMS>
+<TRANS>Im just sitting in the library just now</TRANS>
+
+#
+
+<SMS>how r u wot u doin 2day</SMS>
+<TRANS>How are you What you doing today</TRANS>
+
+#
+
+<SMS>im feelin betta i ll call u l8a luv</SMS>
+<TRANS>Im feeling better I will call you later Love</TRANS>
+
+#
+
+<SMS>soz it l8 cn u giv me a ring in da mornin bout ya sleep ova cz i dont no wot is goin on</SMS>
+<TRANS>sorry it late can you give me a ring in the morning about you sleep over because I dont know what is going on</TRANS>
+
+#
+
+<SMS>u get of holz 2day dnt ya</SMS>
+<TRANS>You get off holidays today dont you</TRANS>
+
+#
+
+<SMS>hy babe u arite mi gd</SMS>
+<TRANS>Hey babe you alright me good</TRANS>
+
+#
+
+<SMS>js gt a free had 2 do a prsntation 4 busines bt gt awy wd it cz leson finshd</SMS>
+<TRANS>just got a free had to do a presentation for business but got away with it because lesson finished</TRANS>
+
+#
+
+<SMS>wt u up 2</SMS>
+<TRANS>What you up to</TRANS>
+
+#
+
+<SMS>hi babe how are u and i luv u</SMS>
+<TRANS>Hi babe how are you and I love you</TRANS>
+
+#
+
+<SMS>soz i did nt say it in the other txt coz i rote to much and i luv u foreva</SMS>
+<TRANS>Sorry I did not say it in the other text because I wrote too much and I love you forever</TRANS>
+
+#
+
+<SMS>how are u and i dont no wat to say</SMS>
+<TRANS>how are you and I dont know what to say</TRANS>
+
+#
+
+<SMS>i am just doing this for the fun of it</SMS>
+<TRANS>I am just doing this for the fun of it</TRANS>
+
+#
+
+<SMS>ok thn i will do</SMS>
+<TRANS>ok then I will do</TRANS>
+
+#
+
+<SMS>but i dont even hav a copy yet onli seen it once</SMS>
+<TRANS>But I dont even have a copy yet Only seen it once</TRANS>
+
+#
+
+<SMS>soz 4 d l8 txt wt u up 2 mi js bored</SMS>
+<TRANS>Sorry for the late text What you up to me just bored</TRANS>
+
+#
+
+<SMS>i wan 2 gt ma nailz dun txt bk</SMS>
+<TRANS>I want to get my nails done Text back</TRANS>
+
+#
+
+<SMS>jus got in</SMS>
+<TRANS>Just got in</TRANS>
+
+#
+
+<SMS>wat u up 2 im bord nw alredy</SMS>
+<TRANS>What you up to Im bored now already</TRANS>
+
+#
+
+<SMS>yea man dun a few missions but now im just gettin chases bad man</SMS>
+<TRANS>Yes man done a few missions but now Im just getting chases bad man</TRANS>
+
+#
+
+<SMS>hw a u mi ok js chtin 2 u onlne</SMS>
+<TRANS>How are you me ok Just chatting to you online</TRANS>
+
+#
+
+<SMS>no im a gd gal i dun do nasty tingz</SMS>
+<TRANS>No Im a good girl I dont do nasty things</TRANS>
+
+#
+
+<SMS>i did txt u</SMS>
+<TRANS>I did text you</TRANS>
+
+#
+
+<SMS>hey hun i can get on the net now</SMS>
+<TRANS>hey honey I can get on the net now</TRANS>
+
+#
+
+<SMS>wot u up to see you soon bye bye luv ya</SMS>
+<TRANS>what you up to See you soon Bye bye Love you</TRANS>
+
+#
+
+<SMS>i sent so mny txts so im on here</SMS>
+<TRANS>I sent so many texts so im on here</TRANS>
+
+#
+
+<SMS>wat time u getin home</SMS>
+<TRANS>what time you getting home</TRANS>
+
+#
+
+<SMS>hi babe i got ur text</SMS>
+<TRANS>Hi babe i got your text</TRANS>
+
+#
+
+<SMS>soz i did nt txt bk i was asleep and i will speak to u l8er ok luv u foreva</SMS>
+<TRANS>Sorry I did not text back I was asleep and I will speak to you later ok love you forever</TRANS>
+
+#
+
+<SMS>sowwy i did not c ya 2nite</SMS>
+<TRANS>Sorry I did not see you tonight</TRANS>
+
+#
+
+<SMS>BUT i have joints so come see me 2moz</SMS>
+<TRANS>But I have joints so come see me tomorrow</TRANS>
+
+#
+
+<SMS>hope not i cnt txt bk afta dis</SMS>
+<TRANS>hope not I cant text back after this</TRANS>
+
+#
+
+<SMS>sori have no way 2 tht is if he txts mi bk</SMS>
+<TRANS>sorry have no way to that is if he texts me back</TRANS>
+
+#
+
+<SMS>tlk 2 u 2mara</SMS>
+<TRANS>talk to you tomorrow</TRANS>
+
+#
+<SMS>i do trust u with all my heart baby im only playin</SMS>
+<TRANS>I do trust you with all my heart baby Im only playing</TRANS>
+
+#
+
+<SMS>i dont wan 2 dream about what u r going to do to me cuz u will probably do it to sum1 elz</SMS>
+<TRANS>I dont want to dream about what you are going to do to me because you will probably do it to someone else</TRANS>
+
+#
+
+<SMS>that thing was like 2 per day love u loads</SMS>
+<TRANS>that thing was like two per day love you loads</TRANS>
+
+#
+
+<SMS>hey thort i would say hi</SMS>
+<TRANS>Hey thought I would say hi</TRANS>
+
+#
+
+<SMS>i no it has only been bout an hr bt i miss u</SMS>
+<TRANS>I know it has only been about an hour but I miss you</TRANS>
+
+#
+
+<SMS>stil nt been called 2 work yet fingrs crossd</SMS>
+<TRANS>Still not been called to work yet fingers crossed</TRANS>
+
+#
+
+<SMS>2 much exercise u need to lay down in front</SMS>
+<TRANS>Too much exercise you need to lay down in front</TRANS>
+
+#
+
+<SMS>im stil waitin 4 the ship n thinking of u</SMS>
+<TRANS>Im still waiting for the ship and thinking of you</TRANS>
+
+#
+
+<SMS>i got ur number and how are u</SMS>
+<TRANS>I got your number and how are you</TRANS>
+
+#
+
+<SMS>i will see u tomo or when ever ok</SMS>
+<TRANS>I will see you tomorrow or when ever ok</TRANS>
+
+#
+
+<SMS>hi how are u im ok and have a good day ok and get me sothing nice</SMS>
+<TRANS>hi how are you Im ok and have a good day Ok and get me something nice</TRANS>
+
+#
+
+<SMS>i wer stil asleep wen u txt me</SMS>
+<TRANS>I was still asleep when you text me</TRANS>
+
+#
+
+<SMS>i dnt hv dat prob snds gd 2 me whether u r goin away or not the 4 wk rule stil stands</SMS>
+<TRANS>I dont have that problem sounds good to me whether you are going away or not the four week rule still stands</TRANS>
+
+#
+
+<SMS>hello babe me again</SMS>
+<TRANS>Hello babe me again</TRANS>
+
+#
+
+<SMS>im still tlkin 2 u online but u nt replyin</SMS>
+<TRANS>Im still talking to you online but you not replying</TRANS>
+
+#
+
+<SMS>of course let me no whenever</SMS>
+<TRANS>of course let me know whenever</TRANS>
+
+#
+
+<SMS>confused i ll do it tho there is a lot</SMS>
+<TRANS>Confused I will do it though there is a lot</TRANS>
+
+#
+
+<SMS>yeh but i was tlkin abt 2mora if u come out</SMS>
+<TRANS>Yes but I was talking about tomorrow if you come out</TRANS>
+
+#
+
+<SMS>see wnt get u ne now then if u dun want some though</SMS>
+<TRANS>See wont get you any now then if you dont want some though</TRANS>
+
+#
+
+<SMS>lets hope they choose sumfin we dun like then</SMS>
+<TRANS>Lets hope they choose something we dont like then</TRANS>
+
+#
+<SMS>i loved it i was just thinkin what i cud put between em</SMS>
+<TRANS>I loved it I was just thinking what I could put between them</TRANS>
+
+#
+
+<SMS>wot sort ov question was dat</SMS>
+<TRANS>what sort of question was that</TRANS>
+
+#
+
+<SMS>i misd u so much</SMS>
+<TRANS>I missed you so much</TRANS>
+
+#
+
+<SMS>are you at home</SMS>
+<TRANS>Are you at home</TRANS>
+
+#
+
+<SMS>do u want 2 see how it goes 2moz wid me and u</SMS>
+<TRANS>Do you want to see how it goes tomorrow with me and you</TRANS>
+
+#
+
+<SMS>am i that sexy u cant keep me of ya mind</SMS>
+<TRANS>Am I that sexy you cant keep me of your mind</TRANS>
+
+#
+
+<SMS>me wide awake babe i shud ys</SMS>
+<TRANS>me wide awake babe I should yes</TRANS>
+
+#
+
+<SMS>i do love u i love u mre den a friend mre dn anythin u cud think of</SMS>
+<TRANS>I do love you I love you more then a friend more than anything you could think of</TRANS>
+
+#
+
+<SMS>u r my lfe</SMS>
+<TRANS>you are my life</TRANS>
+
+#
+
+<SMS>hi ya hw r u wot u up 2 babe</SMS>
+<TRANS>Hi yes how are you what you up to babe</TRANS>
+
+#
+
+<SMS>so when i com c ya wot u guna buy me</SMS>
+<TRANS>so when I come see you what you going buy me</TRANS>
+
+#
+
+<SMS>lookin foward 2 it love ya</SMS>
+<TRANS>Looking forward to it Love you</TRANS>
+
+#
+
+<SMS>Alrite another txt address</SMS>
+<TRANS>Alright another text address</TRANS>
+
+#
+
+<SMS>R u goin out with da others 2nite</SMS>
+<TRANS>Are you going out with the others tonight</TRANS>
+
+#
+
+<SMS>Do what u want Follow ur heart</SMS>
+<TRANS>Do what you want Follow your heart</TRANS>
+
+#
+
+<SMS>but seriously if u like him go 4 it babe</SMS>
+<TRANS>but seriously if you like him go for it babe</TRANS>
+
+#
+
+<SMS>i had a really nice time 2day</SMS>
+<TRANS>I had a really nice time today</TRANS>
+
+#
+
+<SMS>could nt really wait to tell u</SMS>
+<TRANS>Could not really wait to tell you</TRANS>
+
+#
+
+<SMS>could not believe it he asked me was i busy</SMS>
+<TRANS>could not believe it he asked me was I busy</TRANS>
+
+#
+
+<SMS>could see the bits of paper in his hands so i said yes</SMS>
+<TRANS>could see the bits of paper in his hands so I said yes</TRANS>
+
+#
+
