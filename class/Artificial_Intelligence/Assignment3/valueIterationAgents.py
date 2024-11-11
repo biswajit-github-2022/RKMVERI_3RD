@@ -24,12 +24,13 @@
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
-
+import sys
 
 import mdp, util
 
 from learningAgents import ValueEstimationAgent
 import collections
+import random
 
 class ValueIterationAgent(ValueEstimationAgent):
     """
@@ -62,6 +63,24 @@ class ValueIterationAgent(ValueEstimationAgent):
     def runValueIteration(self):
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
+        for i in range(self.iterations):
+            mdpStates = self.mdp.getStates()
+            newValues = {}
+            for state in mdpStates:
+                legalActions = self.mdp.getPossibleActions(state)
+                #what if legalActions is empty
+                maxValue = 0
+                if legalActions:
+                    values = [self.computeQValueFromValues(state, action) for action in legalActions]
+                    maxValue = max(values)
+
+                # maxIndexes = [i for i in len(values) if values[i] is maxValue]
+                newValues[state] = maxValue
+
+            for state in mdpStates:
+                self.values[state] = newValues[state]
+
+        return
 
 
     def getValue(self, state):
@@ -77,6 +96,12 @@ class ValueIterationAgent(ValueEstimationAgent):
           value function stored in self.values.
         """
         "*** YOUR CODE HERE ***"
+        qValue = 0
+        for nextState, prob in self.mdp.getTransitionStatesAndProbs(state, action):
+            qValue += prob*(self.mdp.getReward(state, action, nextState) + self.discount*self.getValue(nextState))
+            # print("computeQValueFromValues ", nextState, prob, qValue)
+
+        return qValue
         util.raiseNotDefined()
 
     def computeActionFromValues(self, state):
@@ -89,6 +114,26 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         "*** YOUR CODE HERE ***"
+        # print('computeActionFromValues ')
+        legalActions = self.mdp.getPossibleActions(state)
+        if not legalActions:
+            return None
+        # maxValue = 0
+        # maxIndex = None
+        # for i in range(len(actions)):
+        #     action = legalActions[i]
+        #     value = self.computeQValueFromValues(state, action)
+        #     if value>max_value:
+        #         max_value = value
+        #         max_index = i
+
+        #implement random choice for equal values
+        values = [self.computeQValueFromValues(state, action) for action in legalActions]
+        maxValue = max(values)
+        maxIndexes = [i for i in range(len(values)) if values[i] is maxValue]
+        actionTaken = legalActions[random.choice(maxIndexes)]
+
+        return actionTaken
         util.raiseNotDefined()
 
     def getPolicy(self, state):
@@ -129,6 +174,22 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
         ValueIterationAgent.__init__(self, mdp, discount, iterations)
 
     def runValueIteration(self):
+        mdpStates = self.mdp.getStates()
+        # current_iteration = 0
+        numStates = len(mdpStates)
+        for i in range(self.iterations):
+            state = mdpStates[i%numStates]
+            legalActions = self.mdp.getPossibleActions(state)
+            # what if legalActions is empty
+            maxValue = 0
+            if legalActions:
+                values = [self.computeQValueFromValues(state, action) for action in legalActions]
+                maxValue = max(values)
+
+            # maxIndexes = [i for i in len(values) if values[i] is maxValue]
+            self.values[state] = maxValue
+
+        return
         "*** YOUR CODE HERE ***"
 
 class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
@@ -150,4 +211,66 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
+        predecessors = {}
+        mdpStates = self.mdp.getStates()
+        pq = util.PriorityQueue()
+        # print(bcolors.HEADER, 'mdpStates ', mdpStates, bcolors.ENDC)
+        for state in mdpStates:
+            legalActions = self.mdp.getPossibleActions(state)
+            maxValue = -float('inf')  # because we are taking max over all states from this state
+            # print(bcolors.OKBLUE, 'state ', state,' legalActions ', legalActions, bcolors.ENDC)
+            for action in legalActions:
+                # nextStates, probs = self.mdp.getTransitionStatesAndProbs(state, action)
+                # print('state ', state, ' action ', action,' (nextState, prob) in ', self.mdp.getTransitionStatesAndProbs(state, action))
+                for nextState, prob in self.mdp.getTransitionStatesAndProbs(state, action):
+                    if not predecessors.get(nextState):
+                        predecessors[nextState] = set()
+                        # print('creating set for ', nextState)
+                    if prob>0:
+                        predecessors[nextState].add(state)
+                        # print('predecessor of ', nextState, ' is', state)
+
+                value = self.computeQValueFromValues(state,action)
+                if value>maxValue:
+                    maxValue = value
+            if state is not 'TERMINAL_STATE':
+                diff = abs(self.getValue(state) - maxValue)
+                pq.push(state, -diff)
+                # print('pushing ', state, ' diff = ', self.getValue(state), ' - ',maxValue)
+
+        for i in range(self.iterations):
+            # print('iteration ', i)
+            if pq.isEmpty() is True:
+                return
+
+            state = pq.pop()
+
+            if state is not 'TERMINAL_STATE':
+                legalActions = self.mdp.getPossibleActions(state)
+                # what if legalActions is empty
+                maxValue = 0  # default value, actual comes from self.computeQValueFromValues(state, action)
+                if legalActions:
+                    values = [self.computeQValueFromValues(state, action) for action in legalActions]
+                    # print('values ', values)
+                    maxValue = max(values)
+
+                # maxIndexes = [i for i in len(values) if values[i] is maxValue]
+                self.values[state] = maxValue
+                parents = predecessors[state]
+                # print(bcolors.WARNING, 'state ', state, ' maxValue ', maxValue, ' parents ', parents, bcolors.ENDC)
+                for parent in parents:
+                    legalActions = self.mdp.getPossibleActions(parent)
+                    maxValue = 0
+                    if legalActions:
+                        values = [self.computeQValueFromValues(parent, action) for action in legalActions]
+                        # print('child values ', values)
+                        maxValue = max(values)
+
+                    diff = abs(self.values[parent] - maxValue)
+                    if diff>self.theta:
+                        pq.update(parent, -diff)
+                        # print(bcolors.OKGREEN, 'updating ', parent, ' with ', -diff, bcolors.ENDC)
+
+        return
+        
 
