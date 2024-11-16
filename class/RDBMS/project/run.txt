@@ -1,0 +1,2 @@
+new.dev/index.php
+localhost/phpmyadmin
