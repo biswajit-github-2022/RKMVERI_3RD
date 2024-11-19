@@ -1,0 +1,51 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Selector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cards">
+        <div id="card-0" class="card">Aaron Ramsdale</div>
+        <div id="card-1" class="card">Andreas Christensen</div>
+        <div id="card-2" class="card">André Onana</div>
+        <div id="card-3" class="card">Aurélien Tchouaméni</div>
+        <div id="card-4" class="card">Bruno Fernandes</div>
+        <div id="card-5" class="card">Christian Eriksen</div>
+        <div id="card-6" class="card">Cristiano Ronaldo</div>
+        <div id="card-7" class="card">Erling Haaland</div>
+        <div id="card-8" class="card">Florian Wirtz</div>
+        <div id="card-9" class="card">Jamal Musiala</div>
+        <div id="card-10" class="card">Jude Bellingham</div>
+        <div id="card-11" class="card">Karim Benzema</div>
+        <div id="card-12" class="card">Kyle Walker</div>
+        <div id="card-13" class="card">Kylian Mbappé</div>
+        <div id="card-14" class="card">Lionel Messi</div>
+        <div id="card-15" class="card">Luis Díaz</div>
+        <div id="card-16" class="card">Neymar Jr.</div>
+        <div id="card-17" class="card">Robert Lewandowski</div>
+        <div id="card-18" class="card">Vinicius Jr.</div>
+        <div id="card-19" class="card">Yassine Bounou</div>
+    </div>
+
+    <div class="slider-container">
+        <label for="value-slider" class="slider-label">Money to invest</label>
+        <input type="range" id="value-slider" min="10000000" max="1000000000" step="1000000" value="10000000">
+        <p>Selected Value: <span id="slider-value">10,000,000</span></p>
+    </div>
+    <button id="getIdsButton">Get Selected IDs</button>
+    <div id="outputContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center;   margin-top: 10px;"></div>
+
+
+
+    <script src="script.js"></script>
+    <script src="getMatrix.js"></script>
+    
+    <!-- <script src="find.js"></script> -->
+</body>
+</html>
