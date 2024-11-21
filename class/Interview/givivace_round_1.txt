@@ -1,0 +1,246 @@
+GoVivace-RKMVERI-MCQ
+
+
+ranabiswajit911@gmail.com 
+* 
+
+*
+
+
+Which of the following is not a measure of central tendency?
+Mean
+Median
+Standard deviation
+Mode
+
+
+Which of the following is not an example of a Large Language Model?
+Llama
+GPT-4
+VGGNet
+PaLM
+
+
+What does the term “latency” refer to in the context of computer networks?
+The total amount of data that can be transmitted over the network
+The delay between sending a request and receiving a response
+The number of devices connected to the network
+The frequency of network packet loss
+
+
+A vector x and a vector y are orthogonal to each other if  (in the options below ^T is transpose)
+x^Ty =0
+x = y
+y^T= x
+None of the above
+
+
+Consider the following python code and choose the correct option
+>>>import re
+>>>pattern = re.compile("at")
+>>>re.match(pattern, 'later')
+Compilation output will have no match for the pattern
+Compilation output will say match at position (1,3)
+The code is wrong
+Compilation output will say partial match
+
+
+What does the __init__ method do in a Python class?
+It is used to initialize an object’s attributes.
+It is used to define a function within a class.
+It is used to delete an object.
+It is used to return a value.
+
+
+What is the primary goal of Gradient Descent in machine learning?
+To increase the learning rate of a model
+To minimize the cost or loss function
+To maximize the number of iterations
+To find the global maximum of the model's performance
+
+
+Which of the following regularization techniques stops the training process when the model's performance on the validation set starts to degrade?
+L1 Regularization
+Early Stopping
+Batch Normalization
+L2 Regularization
+
+
+Which of the following is a common HTTP response status code for "Not Found"? 
+200
+301
+404
+500
+
+
+Which of the following is a probability distribution over a single binary random variable and it is controlled by  a parameter which gives the probability of the random variable being equal to 1 or 0
+Multinoulli Distribution
+Gaussian Distribution
+Bernoulli Distribution
+Exponential Distribution
+
+
+In Linux shell which command would you use to print the number of lines in a file?
+count filename
+grep -n filename
+wc -l filename
+ls filename
+
+
+Which of the following tag is used to insert a line-break in HTML?
+<br>
+<a>
+<pre>
+<b>
+
+
+Which function in C++ is used to deallocate memory allocated by new?
+delete
+remove
+free
+clear
+
+
+If the correlation coefficient between two variables is 0, what does this indicate?
+A strong positive relationship
+A strong negative relationship
+No linear relationship
+The variables are dependent
+
+
+In Gradient Descent, what does the learning rate parameter control?
+The complexity of the model
+The size of the steps taken toward the minimum of the loss function.
+The number of epochs required to reach convergence
+The number of layers in a neural network
+
+
+In the context of machine learning, a Transducer refers to:
+A model that converts sequential inputs into a sequence of outputs
+A model that transforms data into fixed-length feature vectors
+A model that translates between languages
+A sensor that converts physical quantities into electrical signals
+
+
+
+Which of the following is NOT an application of Large Language Models?
+Image recognition
+Chatbots and conversational agents
+Text classification
+Language translation
+
+
+Vectors whose direction remains unchanged even after applying linear transformation with a matrix are called? 
+Eigenvalues
+Eigenvectors
+Cofactor matrix
+Minor of a matrix
+
+
+The SQL syntax DELETE  
+deletes an index
+deletes a table
+deletes data from a database
+modifies a database
+
+
+Which layer does the data link layer take packets from and encapsulate them into frames for transmission?
+Transport layer
+Application layer
+Network layer
+Physical layer
+
+
+What is a constructor in C++?
+A special function that initializes objects
+A function that destroys objects
+A function used for outputting data
+A data type in C++
+
+
+
+What will be the output of the following c++ code:
+#include <iostream>
+#include <csstring>
+using namespace std;
+int main(){
+	char ch[] = "GoVivace Inc.";
+	int l =strlen(ch);
+	cout << l <<endl;
+	return 0;
+}
+12
+13
+Error
+11
+
+
+In backpropagation in neural network, which rule is used to compute the gradient of the loss function with respect to each weight? 
+Chain Rule
+Product Rule
+Sum Rule
+Quotient Rule
+
+
+Which of the following is true for IPv4
+Address size: 128 bits, Address format:  Hexadecimal, separated by colons and uses multicast and anycast
+Address size: 32 bits, Address format:  Dotted-decimal  and  supports broadcast communication
+Address size: 32 bits, Address format:  Hexadecimal, separated by colons  and uses multicast and anycast
+Address size: 128 bits, Address format:  Dotted-decimal and supports broadcast communication
+
+
+Which of the following is a loss function commonly used in classification tasks?
+Mean Squared Error (MSE)
+Cross-Entropy Loss
+Mean Absolute Error (MAE)
+Hinge Loss
+
+
+What will be the output of the following python code:
+>>> a=[2, 3.5,8, 10]
+>>> a[1:-1]
+[3.5, 8]
+[10, 2]
+[2,10]
+[8,3.5]
+
+
+If you have an 2-D array in numpy as follows:
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+Then which of the following syntax will print 2nd element on 1st row:
+print(arr[0, 1])
+print(arr[1, 0])
+print(arr[1, 2])
+print(arr[2, 1])
+
+
+Which protocol is most commonly used for securing communication over a network? 
+FTP
+SMTP
+HTTPS
+POP3
+
+
+Which of the following is a common activation function used in convolutional neural network to introduce non-linearity?
+ReLU (Rectified Linear Unit)
+Sigmoid
+Tanh
+All of the above
+
+
+What will be the output  of the following c++ code 
+#include <iostream>
+#include <csstring>
+using namespace std;
+int main(){
+	string food = "Rice";
+	string &meal = food;
+	cout<<food<<"\n";
+	cout<<meal<<"\n";
+	cout<<&food ;
+	return 0;
+}
+Rice ,  Rice  and memory address of food
+Rice ,  Rice  and Rice
+Rice ,  memory address of food and Rice
+Error
