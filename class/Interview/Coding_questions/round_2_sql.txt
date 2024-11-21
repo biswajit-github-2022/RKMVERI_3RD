@@ -1,0 +1,8 @@
+movies
+id, movie_name, rating
+
+sort return desc
+
+select * from movies
+order by rating desc
+limit 1 offset 5
