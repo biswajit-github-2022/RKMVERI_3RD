@@ -73,7 +73,8 @@ def receive_variable():
         # Return response
         return jsonify({
             "status": "success",
-            "weights": weights.tolist()  # Convert to list for JSON serialization
+            "weights": weights.tolist(),  # Convert to list for JSON serialization
+            "mean_vec": mean_vector.tolist()
         })
 
     except Exception as e:

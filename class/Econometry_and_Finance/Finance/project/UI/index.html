@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1><b><i>Select the players of your choice</i></b></h1>
+
     <div class="cards">
         <div id="card-0" class="card">Aaron Ramsdale</div>
         <div id="card-1" class="card">Andreas Christensen</div>
@@ -34,11 +36,15 @@
     </div>
 
     <div class="slider-container">
-        <label for="value-slider" class="slider-label">Money to invest</label>
+        <label for="value-slider" class="slider-label"><b>Money to invest</b></label>
         <input type="range" id="value-slider" min="10000000" max="1000000000" step="1000000" value="10000000">
         <p>Selected Value: <span id="slider-value">10,000,000</span></p>
     </div>
-    <button id="getIdsButton">Get Selected IDs</button>
+    <div>
+        <span><b>Enter # years to see the future values:</b> </span>
+        <input type="text" id="year">
+    </div>
+    <button id="getIdsButton">Find Optimal Price</button>
     <div id="outputContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center;   margin-top: 10px;"></div>
 
 

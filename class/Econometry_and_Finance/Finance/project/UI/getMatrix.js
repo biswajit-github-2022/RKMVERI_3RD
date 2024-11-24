@@ -5,7 +5,9 @@ let matrix = [];
 let output = null;
 let totalMoney = null;
 let newArray = null;
-let players=["Aaron Ramsdale","Andreas Christensen","André Onana","Aurélien Tchouaméni","Bruno Fernandes","Christian Eriksen","Cristiano Ronaldo","Erling Haaland","Florian Wirtz","Jamal Musiala","Jude Bellingham","Karim Benzema","Kyle Walker","Kylian Mbappé","Lionel Messi","Luis Díaz","Neymar Jr.","Robert Lewandowski","Vinicius Jr.","Yassine Bounou"]
+let players = ["Aaron Ramsdale", "Andreas Christensen", "André Onana", "Aurélien Tchouaméni", "Bruno Fernandes", "Christian Eriksen", "Cristiano Ronaldo", "Erling Haaland", "Florian Wirtz", "Jamal Musiala", "Jude Bellingham", "Karim Benzema", "Kyle Walker", "Kylian Mbappé", "Lionel Messi", "Luis Díaz", "Neymar Jr.", "Robert Lewandowski", "Vinicius Jr.", "Yassine Bounou"]
+let latest_val = [45, 100, 20, 90, 540, 36, 675, 720, 63, 9, 99, 45, 360, 1800, 1260, 315, 1620, 90, 630, 90]
+let mean = null;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -42,7 +44,9 @@ window.addEventListener('cardsSelected', (event) => {
         }
     });
 
-
+    const yearInput = document.getElementById('year').value;
+    const year = parseInt(yearInput, 10);
+    console.log(year)
     //send matrix and get weights
     const data = { variable: matrix }; // Replace with your variable
 
@@ -57,19 +61,50 @@ window.addEventListener('cardsSelected', (event) => {
         .then(result => {
             console.log("Response from Python:", result);
             output = result["weights"];
+            mean = result["mean_vec"]
             newArray = output.map(weight => weight * totalMoney);
 
             console.log("New Array:", newArray);
             // =====================
             const outputContainer = document.getElementById("outputContainer");
             outputContainer.innerHTML = ''; // Clear any existing content
+
             newArray.forEach((value, index) => {
-                const item = document.createElement('div');
-                item.textContent = `${players[parseInt(selectedIDs[index])] } : ${value.toFixed(2)}`;
-                item.style.margin = '5px 0';
-                item.style.fontSize = '18px';
-                outputContainer.appendChild(item);
+                // Create a table if not already created
+                let table = document.getElementById('playerTable');
+                if (!table) {
+                    table = document.createElement('table');
+                    table.id = 'playerTable';
+                    table.style.borderCollapse = 'collapse';
+                    table.style.width = '100%';
+                    table.style.marginTop = '10px';
+                    table.style.fontSize = '18px';
+
+                    // Create the header row
+                    const headerRow = document.createElement('tr');
+                    ['Player', 'Value', 'Future value (in million)'].forEach(headerText => {
+                        const th = document.createElement('th');
+                        th.textContent = headerText;
+                        th.style.border = '1px solid #000';
+                        th.style.padding = '8px';
+                        headerRow.appendChild(th);
+                    });
+                    table.appendChild(headerRow);
+
+                    outputContainer.appendChild(table);
+                }
+
+                // Add a new row for each item
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="border: 1px solid #000; padding: 8px;">${players[parseInt(selectedIDs[index])]}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${value.toFixed(2)}</td>
+                    <td style="border: 1px solid #000; padding: 8px;">${latest_val[parseInt(selectedIDs[index])] * Math.exp(mean[index]*year)}</td>
+
+                `;
+                table.appendChild(row);
             });
+
 
         })
         .catch(error => console.error("Error:", error));
