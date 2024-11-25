@@ -1,0 +1,1 @@
+https://github.com/biswajit-github-2022/text-to-sql-finetuning
