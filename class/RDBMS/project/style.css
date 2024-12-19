@@ -1,0 +1,202 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Ensures gradient covers the full viewport height */
+    background: linear-gradient(to bottom right, #2099e9, #fa40cb);
+    background-repeat: no-repeat;
+    /* Prevents repetition */
+    background-size: cover;
+    /* Ensures gradient stretches to cover the full area */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+/* Header */
+h2 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+/* Form Styles */
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form input[type="text"] {
+    width: 250px;
+    padding: 10px;
+    border: 2px solid #ff758c;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+form input[type="text"]:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0px 0px 5px rgba(255, 107, 107, 0.8);
+}
+
+form button {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+form button:hover {
+    background-color: #ff4c4c;
+    box-shadow: 0px 4px 8px rgba(255, 76, 76, 0.8);
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #ff758c;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffe6e9;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table tr:hover {
+    background-color: #ffcad4;
+    transition: background-color 0.3s;
+}
+
+table td {
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Footer or No Results Message */
+p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Review Form Styles */
+.review-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-dropdown,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-dropdown:focus,
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0px 0px 5px rgba(255, 107, 107, 0.8);
+    outline: none;
+}
+
+.form-button {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #ff4c4c;
+}

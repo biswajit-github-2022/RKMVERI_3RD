@@ -1,5 +1,5 @@
 <?php
-require_once('phpinfo.php');
+require_once('connect.php');
 
 // Project 1: Search for stars
 $input_text = '';
@@ -24,19 +24,49 @@ if (!$movies_result) {
 }
 
 // Add review form submission
+// if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['review_submit'])) {
+//     $title = mysqli_real_escape_string($con, $_POST['title']);
+//     $user = mysqli_real_escape_string($con, $_POST['user']);
+//     $review = mysqli_real_escape_string($con, $_POST['review']);
+    
+//     $review_query = "INSERT INTO Reviews (title, user, review) VALUES ('$title', '$user', '$review')";
+    
+//     if (mysqli_query($con, $review_query)) {
+//         echo "<script>alert('Review added successfully!'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
+
+//     } else {
+//         echo "<script>alert('Error: " . mysqli_error($con) . "'); window.location.href='index.php';</script>";
+//     }
+// }
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['review_submit'])) {
     $title = mysqli_real_escape_string($con, $_POST['title']);
     $user = mysqli_real_escape_string($con, $_POST['user']);
     $review = mysqli_real_escape_string($con, $_POST['review']);
     
-    $review_query = "INSERT INTO Reviews (title, user, review) VALUES ('$title', '$user', '$review')";
-    
-    if (mysqli_query($con, $review_query)) {
-        echo "<script>alert('Review added successfully!'); window.location.href='index.php';</script>";
+    // Check if a record with the same title and user already exists
+    $check_query = "SELECT * FROM Reviews WHERE title = '$title' AND user = '$user'";
+    $check_result = mysqli_query($con, $check_query);
+
+    if (mysqli_num_rows($check_result) > 0) {
+        // Update the review field if the row exists
+        $update_query = "UPDATE Reviews SET review = '$review' WHERE title = '$title' AND user = '$user'";
+        if (mysqli_query($con, $update_query)) {
+            echo "<script>alert('Your data is updated!'); window.location.href='" . $_SERVER['PHP_SELF'] . "';</script>";
+        } else {
+            echo "<script>alert('Error: " . mysqli_error($con) . "'); window.location.href='index.php';</script>";
+        }
     } else {
-        echo "<script>alert('Error: " . mysqli_error($con) . "'); window.location.href='index.php';</script>";
+        // Insert a new record if no matching row exists
+        $review_query = "INSERT INTO Reviews (title, user, review) VALUES ('$title', '$user', '$review')";
+        if (mysqli_query($con, $review_query)) {
+            echo "<script>alert('Review added successfully!'); window.location.href='" . $_SERVER['PHP_SELF'] . "';</script>";
+        } else {
+            echo "<script>alert('Error: " . mysqli_error($con) . "'); window.location.href='index.php';</script>";
+        }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['review_submit'])) {
             align-items: center;
             color: #333;
         }
+
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -69,52 +100,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['review_submit'])) {
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         .section {
             width: 48%;
             padding: 10px;
         }
+
         h2 {
             color: #2099e9;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
-        th, td {
+
+        th,
+        td {
             padding: 8px;
             text-align: left;
         }
+
         th {
             background: #2099e9;
             color: #fff;
         }
-        input, select, textarea, button {
+
+        input,
+        select,
+        textarea,
+        button {
             width: 100%;
             padding: 8px;
             margin: 8px 0;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         button {
             background: #fa40cb;
             color: #fff;
             font-weight: bold;
             cursor: pointer;
         }
+
         button:hover {
             background: #e836b3;
         }
 
         .new {
-            display:flex;
+            display: flex;
             flex-direction: column;
         }
+        .head{
+            color: white;
+            font-size:70px;
+            font-weight:bold;
+        }
+
     </style>
 </head>
 <body>
+    <div>
+        <h1 class="head" >
+            Movie DataBase
+        </h1>
+    </div>
     <div class="container">
         <!-- Section for Search -->
         <div class="section">
